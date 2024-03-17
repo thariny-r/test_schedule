@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Provas Agendadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Provas Agendadas</h2>
+    <ul>
+        {% for prova in provas %}
+            <li>{{ prova[1] }} - {{ prova[2] }} - <a href="{{ url_for('remarcar', id_prova=prova[0]) }}">Remarcar</a> - <a href="{{ url_for('cancelar', id_prova=prova[0]) }}">Cancelar</a></li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('agendar') }}">Agendar Nova Prova</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var modal = document.getElementById('messageModal');
+                var modalMessage = document.getElementById('modalMessage');
+                var closeModal = document.getElementsByClassName('modal-close')[0];
+                
+                // Exibe a primeira mensagem de sucesso
+                {% for category, message in messages %}
+                    if ("{{ category }}" === "success") {
+                        modalMessage.textContent = "{{ message }}";
+                        modal.style.display = "block";
+                    }
+                {% endfor %}
+
+                closeModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+            });
+        </script>
+    {% endif %}
+{% endwith %}
+</body>
+</html>
+{% endblock %}

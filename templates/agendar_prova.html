@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Agendar Prova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+{% extends 'base.html' %}
+
+
+<body>
+{% block content %}
+    <h2>Agendar Prova</h2>
+    <form action="/agendar" method="post">
+        <label for="nome">Escolha a Prova:</label>
+        <select id="nome" name="nome" required>
+            <option value="História">História</option>
+            <option value="Matemática">Matemática</option>
+            <option value="Geografia">Geografia</option>
+        </select><br><br>
+        <label for="data">Data da Prova:</label>
+        <input type="date" id="data" name="data" required onkeydown="return false;" min="{{ today }}">
+        <input type="submit" value="Agendar">
+    </form>    
+    <script>
+        document.getElementById('data').addEventListener('input', function(e) {
+            var day = new Date(this.value).getUTCDay();
+            if ([6, 0].indexOf(day) !== -1) {
+                this.value = '';
+                alert('Agendamentos em fins de semana não são permitidos.');
+            }
+        });
+    </script>
+    <!-- Botão para visualizar as provas agendadas -->
+    <a href="/provas_agendadas">Provas Agendadas</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var modal = document.getElementById('messageModal');
+                var modalMessage = document.getElementById('modalMessage');
+                var closeModal = document.getElementsByClassName('modal-close')[0];
+                
+                // Exibe a primeira mensagem de sucesso
+                {% for category, message in messages %}
+                    if ("{{ category }}" === "success") {
+                        modalMessage.textContent = "{{ message }}";
+                        modal.style.display = "block";
+                    }
+                {% endfor %}
+
+                closeModal.onclick = function() {
+                    modal.style.display = "none";
+                }
+            });
+        </script>
+    {% endif %}
+{% endwith %}
+{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between; /* Isso garante que o footer fique no final da página */
+    margin: 0; /* Remove a margem padrão */
+  }
+
+main {
+    flex: 1 0 auto;
+  }
+
+h2 {
+    color: #6d8094;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: rgb(112, 49, 114);
+    color: white;
+  }
+  
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  a, button {
+    color: rgb(112, 49, 114);
+    text-decoration: none;
+    background-color: transparent;
+  }
+  
+  a:hover, button:hover {
+    text-decoration: underline;    
+  }
+  
+  .form-control {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .btn-primary {
+    background-color: rgb(112, 49, 114);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: rgb(112, 49, 114);    
+  }
+
+a[href="/provas_agendadas"] {
+    display: inline-block;
+    margin-top: 20px; /* Adiciona margem acima do botão/link */
+  }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(112, 49, 114);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+header {
+    color:rgb(112, 49, 114);
+    padding: 20px;
+    text-align: center;
+}
+
+a.btn-primary:hover {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 20% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; 
+}
+
+
+  .modal-close {
+    z-index: 2;
+    color: #000;
+    position: absolute;
+    top: 25rem; /* Ajuste conforme necessário */
+    right: 30rem; /* Ajuste conforme necessário */
+    cursor: pointer;
+    font-size: 24px; /* Tamanho do ícone de fechar */
+    padding: 0; /* Remove qualquer padding padrão para evitar deslocamentos */
+  }
