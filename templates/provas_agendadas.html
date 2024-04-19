@@ -13,7 +13,9 @@
     <h2>Provas Agendadas</h2>
     <ul>
         {% for prova in provas %}
-            <li>{{ prova[1] }} - {{ prova[2] }} - <a href="{{ url_for('remarcar', id_prova=prova[0]) }}">Remarcar</a> - <a href="{{ url_for('cancelar', id_prova=prova[0]) }}">Cancelar</a></li>
+            <li>{{ prova.nome }} - {{ prova.data_agendada.strftime('%d/%m/%Y') }} - <a href="{{ url_for('remarcar', id_prova=prova.id) }}">Remarcar</a> - <a href="{{ url_for('cancelar', id_prova=prova.id) }}">Cancelar</a></li>
+        {% else %}
+            <li>Nenhuma prova agendada encontrada.</li>
         {% endfor %}
     </ul>
 
@@ -41,7 +43,7 @@
             });
         </script>
     {% endif %}
-{% endwith %}
+    {% endwith %}
 </body>
 </html>
 {% endblock %}

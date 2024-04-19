@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<header>
+    <nav>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+</header>
 <html lang="pt">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -12,17 +17,17 @@
 <body>
 {% block content %}
     <h2>Agendar Prova</h2>
-    <form action="/agendar" method="post">
-        <label for="nome">Escolha a Prova:</label>
+    <form action="{{ url_for('agendar') }}" method="post">
+        <label for="prova_id">Escolha a Prova:</label>
         <select id="nome" name="nome" required>
-            <option value="História">História</option>
-            <option value="Matemática">Matemática</option>
-            <option value="Geografia">Geografia</option>
+            {% for prova in provas %}
+            <option value="{{ prova.id }}">{{ prova.nome }}</option>
+            {% endfor %}
         </select><br><br>
         <label for="data">Data da Prova:</label>
         <input type="date" id="data" name="data" required onkeydown="return false;" min="{{ today }}">
         <input type="submit" value="Agendar">
-    </form>    
+    </form>
     <script>
         document.getElementById('data').addEventListener('input', function(e) {
             var day = new Date(this.value).getUTCDay();
